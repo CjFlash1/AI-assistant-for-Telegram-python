@@ -88,19 +88,34 @@ class AIService:
 
     async def analyze_multimodal(self, mime_type: str, data: bytes, user_prompt: str = "") -> str:
         """
-        Analyzes multimodal content with fallback logic:
-        1. Google Direct (Native SDK) - Free Tier
-        2. OpenRouter (LangChain) - Paid Tier Fallback
+        Analyzes multimodal content (Images, Audio, Video, PDF, Text) with fallback logic.
         """
         from src.prompts import ANALYSIS_SYSTEM_PROMPT
         full_prompt = f"{ANALYSIS_SYSTEM_PROMPT}\n\nUser Note: {user_prompt}"
+        system_instruction = "You are a highly detailed assistant. You MUST respond ONLY in Russian (на русском языке). NEVER use English, even if the input is English. Translate extracted text if necessary."
 
-        # --- STEP 1: Try Google Direct ---
+        # --- STEP 0: Special handling for text-based documents ---
+        text_mimes = ["text/plain", "text/csv", "text/markdown", "application/json"]
+        if mime_type in text_mimes:
+            try:
+                text_content = data.decode('utf-8', errors='ignore')
+                final_request = f"{full_prompt}\n\nDocument Content:\n{text_content}"
+                print(f"    - Processing text document ({mime_type})...")
+                # Use answer_question logic to get a summary
+                return await self.answer_question(f"Type: {mime_type}\nContent:\n{text_content}", "Опиши и проанализируй этот документ максимально подробно.")
+            except Exception as e:
+                logger.warning(f"Failed to decode text document: {e}")
+
+        # --- STEP 1: Try Google Direct (Multimodal) ---
         try:
             genai.configure(api_key=settings.GOOGLE_API_KEY)
             model = genai.GenerativeModel('gemini-2.0-flash-001')
 
+            # Map MIME types if needed (Gemini SDK uses specific strings)
+            # Gemini supports: image/*, audio/*, video/*, application/pdf
             print(f"    - Attempting Google Direct ({mime_type})...")
+
+            # For PDF, we can use the Direct SDK
             response = await asyncio.to_thread(
                 model.generate_content,
                 [full_prompt, {"mime_type": mime_type, "data": data}]
@@ -110,49 +125,57 @@ class AIService:
                 return response.text
 
         except Exception as e:
-            error_msg = str(e)
-            if "429" in error_msg or "quota" in error_msg.lower():
-                logger.warning(f"Google Quota Exhausted, falling back to OpenRouter. Error: {e}")
+            error_msg = str(e).lower()
+            if "429" in error_msg or "quota" in error_msg:
+                logger.warning(f"Google Quota exhausted for multimodal. Falling back.")
             else:
-                logger.error(f"Google Direct failed with non-quota error: {e}")
-                # We still try fallback for other errors too
+                logger.error(f"Google Direct Multimodal failed: {e}")
 
-        # --- STEP 2: Fallback to OpenRouter ---
+        # --- STEP 2: PDF Local Extraction Fallback (if PDF) ---
+        if mime_type == "application/pdf":
+            try:
+                print("    - Attempting local PDF text extraction fallback...")
+                import io
+                from pypdf import PdfReader
+                pdf_file = io.BytesIO(data)
+                reader = PdfReader(pdf_file)
+                pdf_text = ""
+                for page in reader.pages:
+                    pdf_text += page.extract_text() + "\n"
+
+                if pdf_text.strip():
+                    return await self.answer_question(f"PDF Content:\n{pdf_text[:10000]}", "Опиши и проанализируй этот PDF документ.")
+            except Exception as e:
+                logger.error(f"Local PDF extraction failed: {e}")
+
+        # --- STEP 3: Fallback to OpenRouter (Images/Audio/Video/General) ---
         try:
             print(f"    - Falling back to OpenRouter for {mime_type}...")
 
             if mime_type.startswith("image/"):
-                # OpenRouter supports images via standard OpenAI format
                 encoded_data = base64.b64encode(data).decode('utf-8')
-                message = HumanMessage(
-                    content=[
+                message = [
+                    SystemMessage(content=system_instruction),
+                    HumanMessage(content=[
                         {"type": "text", "text": full_prompt},
-                        {
-                            "type": "image_url",
-                            "image_url": {"url": f"data:{mime_type};base64,{encoded_data}"}
-                        }
-                    ]
-                )
-                response = await self.llm_openrouter.ainvoke([message])
+                        {"type": "image_url", "image_url": {"url": f"data:{mime_type};base64,{encoded_data}"}}
+                    ])
+                ]
+                response = await self.llm_openrouter.ainvoke(message)
                 return response.content
             else:
-                # For Audio/Video, OpenRouter's support via LangChain is limited.
-                # However, we can try to pass it as a generic media or inform the user.
-                # For now, we try to use the same 'image_url' trick which sometimes works for Gemini on OpenRouter.
+                # For non-image media on OpenRouter, try base64 trick or explain limitation
                 encoded_data = base64.b64encode(data).decode('utf-8')
-                message = HumanMessage(
-                    content=[
-                        {"type": "text", "text": full_prompt},
-                        {
-                            "type": "image_url", # Generic media trick
-                            "image_url": {"url": f"data:{mime_type};base64,{encoded_data}"}
-                        }
-                    ]
-                )
-                response = await self.llm_openrouter.ainvoke([message])
+                message = [
+                    SystemMessage(content=system_instruction),
+                    HumanMessage(content=[
+                        {"type": "text", "text": f"{full_prompt}\n(Processing media via secondary provider)"},
+                        {"type": "image_url", "image_url": {"url": f"data:{mime_type};base64,{encoded_data}"}}
+                    ])
+                ]
+                response = await self.llm_openrouter.ainvoke(message)
                 return response.content
 
         except Exception as e:
-            logger.error(f"Both Google and OpenRouter failed for multimodal: {e}")
-            logger.error(traceback.format_exc())
-            return f"Error: All AI providers failed or quota reached. (Last error: {str(e)})"
+            logger.error(f"Final fallback failed for multimodal: {e}")
+            return f"Error: Не удалось проанализировать документ/медиа. (Ошибка: {str(e)})"
