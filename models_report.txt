@@ -1,0 +1,126 @@
+Total models found: 346
+
+--- TOP FREE MODELS ---
+- liquid/lfm-2.5-1.2b-thinking:free (LiquidAI: LFM2.5-1.2B-Thinking (free))
+- liquid/lfm-2.5-1.2b-instruct:free (LiquidAI: LFM2.5-1.2B-Instruct (free))
+- nvidia/nemotron-3-nano-30b-a3b:free (NVIDIA: Nemotron 3 Nano 30B A3B (free))
+- nvidia/nemotron-nano-12b-v2-vl:free (NVIDIA: Nemotron Nano 12B 2 VL (free))
+- qwen/qwen3-next-80b-a3b-instruct:free (Qwen: Qwen3 Next 80B A3B Instruct (free))
+- nvidia/nemotron-nano-9b-v2:free (NVIDIA: Nemotron Nano 9B V2 (free))
+- qwen/qwen3-coder:free (Qwen: Qwen3 Coder 480B A35B (free))
+- tngtech/deepseek-r1t2-chimera:free (TNG: DeepSeek R1T2 Chimera (free))
+- deepseek/deepseek-r1-0528:free (DeepSeek: R1 0528 (free))
+- qwen/qwen3-4b:free (Qwen: Qwen3 4B (free))
+- tngtech/deepseek-r1t-chimera:free (TNG: DeepSeek R1T Chimera (free))
+- mistralai/mistral-small-3.1-24b-instruct:free (Mistral: Mistral Small 3.1 24B (free))
+- google/gemini-2.0-flash-exp:free (Google: Gemini 2.0 Flash Experimental (free))
+- meta-llama/llama-3.3-70b-instruct:free (Meta: Llama 3.3 70B Instruct (free))
+- meta-llama/llama-3.2-3b-instruct:free (Meta: Llama 3.2 3B Instruct (free))
+- qwen/qwen-2.5-vl-7b-instruct:free (Qwen: Qwen2.5-VL 7B Instruct (free))
+- meta-llama/llama-3.1-405b-instruct:free (Meta: Llama 3.1 405B Instruct (free))
+
+--- TOP CHEAP MODELS (<$0.5/1M) ---
+- google/gemini-3-flash-preview : Prompt $0.50/1M
+- mistralai/mistral-small-creative : Prompt $0.10/1M
+- nvidia/nemotron-3-nano-30b-a3b : Prompt $0.06/1M
+- mistralai/devstral-2512 : Prompt $0.05/1M
+- nex-agi/deepseek-v3.1-nex-n1 : Prompt $0.27/1M
+- mistralai/ministral-14b-2512 : Prompt $0.20/1M
+- mistralai/ministral-8b-2512 : Prompt $0.15/1M
+- mistralai/ministral-3b-2512 : Prompt $0.10/1M
+- mistralai/mistral-large-2512 : Prompt $0.50/1M
+- deepseek/deepseek-v3.2-speciale : Prompt $0.27/1M
+- deepseek/deepseek-v3.2 : Prompt $0.25/1M
+- mistralai/voxtral-small-24b-2507 : Prompt $0.10/1M
+- nvidia/nemotron-nano-12b-v2-vl : Prompt $0.20/1M
+- qwen/qwen3-vl-32b-instruct : Prompt $0.50/1M
+- liquid/lfm2-8b-a1b : Prompt $0.01/1M
+- liquid/lfm-2.2-6b : Prompt $0.01/1M
+- qwen/qwen3-vl-8b-thinking : Prompt $0.18/1M
+- qwen/qwen3-vl-8b-instruct : Prompt $0.08/1M
+- nvidia/llama-3.3-nemotron-super-49b-v1.5 : Prompt $0.10/1M
+- google/gemini-2.5-flash-image : Prompt $0.30/1M
+- qwen/qwen3-vl-30b-a3b-thinking : Prompt $0.20/1M
+- qwen/qwen3-vl-30b-a3b-instruct : Prompt $0.15/1M
+- deepseek/deepseek-v3.2-exp : Prompt $0.21/1M
+- google/gemini-2.5-flash-preview-09-2025 : Prompt $0.30/1M
+- google/gemini-2.5-flash-lite-preview-09-2025 : Prompt $0.10/1M
+- qwen/qwen3-vl-235b-a22b-thinking : Prompt $0.45/1M
+- qwen/qwen3-vl-235b-a22b-instruct : Prompt $0.20/1M
+- deepseek/deepseek-v3.1-terminus:exacto : Prompt $0.21/1M
+- deepseek/deepseek-v3.1-terminus : Prompt $0.21/1M
+- qwen/qwen3-coder-flash : Prompt $0.30/1M
+- qwen/qwen3-next-80b-a3b-thinking : Prompt $0.15/1M
+- qwen/qwen3-next-80b-a3b-instruct : Prompt $0.09/1M
+- qwen/qwen-plus-2025-07-28 : Prompt $0.40/1M
+- qwen/qwen-plus-2025-07-28:thinking : Prompt $0.40/1M
+- nvidia/nemotron-nano-9b-v2 : Prompt $0.04/1M
+- deepcogito/cogito-v2-preview-llama-109b-moe : Prompt $0.18/1M
+- qwen/qwen3-30b-a3b-thinking-2507 : Prompt $0.05/1M
+- deepseek/deepseek-chat-v3.1 : Prompt $0.15/1M
+- mistralai/mistral-medium-3.1 : Prompt $0.40/1M
+- mistralai/codestral-2508 : Prompt $0.30/1M
+- qwen/qwen3-coder-30b-a3b-instruct : Prompt $0.07/1M
+- qwen/qwen3-30b-a3b-instruct-2507 : Prompt $0.08/1M
+- qwen/qwen3-235b-a22b-thinking-2507 : Prompt $0.11/1M
+- qwen/qwen3-coder : Prompt $0.22/1M
+- qwen/qwen3-coder:exacto : Prompt $0.22/1M
+- google/gemini-2.5-flash-lite : Prompt $0.10/1M
+- qwen/qwen3-235b-a22b-2507 : Prompt $0.07/1M
+- mistralai/devstral-medium : Prompt $0.40/1M
+- mistralai/devstral-small : Prompt $0.10/1M
+- tngtech/deepseek-r1t2-chimera : Prompt $0.25/1M
+- mistralai/mistral-small-3.2-24b-instruct : Prompt $0.06/1M
+- google/gemini-2.5-flash : Prompt $0.30/1M
+- deepseek/deepseek-r1-0528 : Prompt $0.40/1M
+- nousresearch/deephermes-3-mistral-24b-preview : Prompt $0.02/1M
+- mistralai/mistral-medium-3 : Prompt $0.40/1M
+- meta-llama/llama-guard-4-12b : Prompt $0.18/1M
+- qwen/qwen3-30b-a3b : Prompt $0.06/1M
+- qwen/qwen3-8b : Prompt $0.05/1M
+- qwen/qwen3-14b : Prompt $0.05/1M
+- qwen/qwen3-32b : Prompt $0.08/1M
+- qwen/qwen3-235b-a22b : Prompt $0.20/1M
+- tngtech/deepseek-r1t-chimera : Prompt $0.30/1M
+- qwen/qwen2.5-coder-7b-instruct : Prompt $0.03/1M
+- meta-llama/llama-4-maverick : Prompt $0.15/1M
+- meta-llama/llama-4-scout : Prompt $0.08/1M
+- qwen/qwen2.5-vl-32b-instruct : Prompt $0.05/1M
+- deepseek/deepseek-chat-v3-0324 : Prompt $0.19/1M
+- mistralai/mistral-small-3.1-24b-instruct : Prompt $0.03/1M
+- qwen/qwq-32b : Prompt $0.15/1M
+- google/gemini-2.0-flash-lite-001 : Prompt $0.07/1M
+- mistralai/mistral-saba : Prompt $0.20/1M
+- meta-llama/llama-guard-3-8b : Prompt $0.02/1M
+- google/gemini-2.0-flash-001 : Prompt $0.10/1M
+- qwen/qwen-vl-plus : Prompt $0.21/1M
+- qwen/qwen-turbo : Prompt $0.05/1M
+- qwen/qwen2.5-vl-72b-instruct : Prompt $0.15/1M
+- qwen/qwen-plus : Prompt $0.40/1M
+- mistralai/mistral-small-24b-instruct-2501 : Prompt $0.03/1M
+- deepseek/deepseek-r1-distill-qwen-32b : Prompt $0.29/1M
+- deepseek/deepseek-r1-distill-llama-70b : Prompt $0.03/1M
+- deepseek/deepseek-chat : Prompt $0.30/1M
+- meta-llama/llama-3.3-70b-instruct : Prompt $0.10/1M
+- qwen/qwen-2.5-coder-32b-instruct : Prompt $0.03/1M
+- mistralai/ministral-8b : Prompt $0.10/1M
+- mistralai/ministral-3b : Prompt $0.04/1M
+- qwen/qwen-2.5-7b-instruct : Prompt $0.04/1M
+- meta-llama/llama-3.2-3b-instruct : Prompt $0.02/1M
+- meta-llama/llama-3.2-1b-instruct : Prompt $0.03/1M
+- meta-llama/llama-3.2-11b-vision-instruct : Prompt $0.05/1M
+- qwen/qwen-2.5-72b-instruct : Prompt $0.12/1M
+- mistralai/pixtral-12b : Prompt $0.10/1M
+- qwen/qwen-2.5-vl-7b-instruct : Prompt $0.20/1M
+- sao10k/l3-lunaris-8b : Prompt $0.04/1M
+- meta-llama/llama-3.1-8b-instruct : Prompt $0.02/1M
+- meta-llama/llama-3.1-70b-instruct : Prompt $0.40/1M
+- mistralai/mistral-nemo : Prompt $0.02/1M
+- nousresearch/hermes-2-pro-llama-3-8b : Prompt $0.14/1M
+- mistralai/mistral-7b-instruct : Prompt $0.20/1M
+- mistralai/mistral-7b-instruct-v0.3 : Prompt $0.20/1M
+- meta-llama/llama-guard-2-8b : Prompt $0.20/1M
+- meta-llama/llama-3-8b-instruct : Prompt $0.03/1M
+- mistralai/mistral-tiny : Prompt $0.25/1M
+- mistralai/mistral-7b-instruct-v0.2 : Prompt $0.20/1M
+- mistralai/mistral-7b-instruct-v0.1 : Prompt $0.11/1M
