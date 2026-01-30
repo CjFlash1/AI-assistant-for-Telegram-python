@@ -1,5 +1,5 @@
 import os
-from pydantic_settings import BaseSettings
+from pydantic import BaseSettings
 
 class Settings(BaseSettings):
     # Telegram
@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     # AI
     OPENROUTER_API_KEY: str
     GOOGLE_API_KEY: str
+    OPENAI_API_KEY: str
 
     # Pinecone
     PINECONE_API_KEY: str
@@ -17,7 +18,7 @@ class Settings(BaseSettings):
     PINECONE_NAMESPACE: str = "default"
 
     # App
-    LOG_LEVEL: str = "INFO"
+    LOG_LEVEL: str = "DEBUG"
     ENVIRONMENT: str = "development"
 
     class Config:
