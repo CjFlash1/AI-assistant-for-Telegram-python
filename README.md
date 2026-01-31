@@ -87,6 +87,20 @@ python_bot/
    python run.py
    ```
 
+## 🐳 Deployment (Docker) - Recommended for Servers
+
+If you are running on a server (like **Oracle Cloud**, VPS, or alongside n8n), use Docker. This ensures all system libraries for QR codes are installed correctly.
+
+1. **Build the image:**
+   ```bash
+   docker build -t telegram-bot .
+   ```
+
+2. **Run the container:**
+   ```bash
+   docker run -d --name my-bot --env-file .env --restart unless-stopped telegram-bot
+   ```
+
 ## 📖 User Manual
 
 ### 1. Saving Information
