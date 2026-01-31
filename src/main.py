@@ -1,4 +1,5 @@
 import logging
+from logging.handlers import RotatingFileHandler
 import asyncio
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
@@ -12,7 +13,7 @@ logging.basicConfig(
     level=settings.LOG_LEVEL,
     handlers=[
         logging.StreamHandler(),
-        logging.FileHandler("bot.log")
+        RotatingFileHandler("bot.log", maxBytes=5*1024*1024, backupCount=2, encoding='utf-8')
     ],
     force=True
 )
