@@ -1,31 +1,30 @@
-FROM python:3.11-slim-bookworm
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim
 
+# Set the working directory in the container
 WORKDIR /app
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
-
-# Install system dependencies
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        curl \
-        build-essential \
+# Install system dependencies required for pyzbar (QR code reading) and other libraries
+# libzbar0 is critical for QR detection on Linux
+RUN apt-get update && apt-get install -y \
+    libzbar0 \
+    libgl1 \
     && rm -rf /var/lib/apt/lists/*
 
-# Install python dependencies
+# Copy the requirements file into the container
 COPY requirements.txt .
+
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy project files
+# Copy the rest of the application code
 COPY . .
 
-# Create a non-root user
-RUN adduser --disabled-password --gecos "" appuser && chown -R appuser /app
-USER appuser
+# Create directory for local storage if needed (though we use Pinecone)
+# RUN mkdir -p data
 
-# Expose port (even if valid mostly for webhook, good practice)
-EXPOSE 8000
+# Define environment variable for unbuffered logging
+ENV PYTHONUNBUFFERED=1
 
-# Command to run the application
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run the bot
+CMD ["python", "run.py"]
